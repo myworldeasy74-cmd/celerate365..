@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Celebrate365 | Every Day is a Celebration</title>
+  <!-- Google Fonts and simple CSS reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #fff9f0 0%, #ffe6f0 100%);
+      color: #1e1a2f;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    /* festive color scheme */
+    :root {
+      --orange: #ff7b2c;
+      --purple: #9b4dff;
+      --purple-dark: #7b2eda;
+      --blue: #3b82f6;
+      --gold: #fbbf24;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+      --gradient-hero: linear-gradient(135deg, #ff7b2ccc, #9b4dffcc);
+    }
+
+    /* container utility */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header & nav */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, #ff7b2c, #9b4dff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .logo i {
+      background: none;
+      color: #ff7b2c;
+      margin-right: 6px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #2d2a3a;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #ff7b2c;
+      transform: translateY(-2px);
+    }
+
+    /* hero */
+    .hero {
+      background: var(--gradient-hero), url('https://www.transparenttextures.com/patterns/confetti.png');
+      background-blend-mode: overlay;
+      border-radius: 48px;
+      margin: 40px 0 32px;
+      padding: 64px 40px;
+      text-align: center;
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 650px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+
+    /* date banner */
+    .date-banner {
+      background: white;
+      border-radius: 60px;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+      font-weight: 700;
+    }
+
+    .date-banner i {
+      font-size: 1.7rem;
+      color: #ff7b2c;
+    }
+
+    .today-date {
+      font-size: 1.3rem;
+      background: linear-gradient(145deg, #9b4dff, #3b82f6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* sections general */
+    section {
+      margin: 64px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-left: 6px solid #ff7b2c;
+      padding-left: 20px;
+    }
+
+    /* cards grid */
+    .celebrations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .celeb-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(2px);
+      border-radius: 32px;
+      padding: 24px 20px;
+      transition: all 0.25s ease;
+      box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 123, 44, 0.2);
+      cursor: default;
+      animation: fadeSlideUp 0.4s ease-out;
+    }
+
+    .celeb-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 40px -18px rgba(155, 77, 255, 0.3);
+      border-color: #ffb37c;
+    }
+
+    .celeb-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .celeb-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(120deg, #ff5e00, #9b4dff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .celeb-desc {
+      color: #3c384e;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+
+    /* button */
+    .btn-random {
+      background: linear-gradient(95deg, #ff7b2c, #9b4dff);
+      border: none;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 8px 18px rgba(155, 77, 255, 0.3);
+      margin: 24px 0 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-random:hover {
+      transform: scale(1.02);
+      background: linear-gradient(95deg, #ff6a1a, #8a3eff);
+      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.2);
+    }
+
+    /* calendar mini */
+    .calendar-wrapper {
+      background: white;
+      border-radius: 48px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .month-year {
+      font-weight: 800;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, #ff7b2c, #9b4dff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #ff7b2c;
+    }
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+    }
+    .cal-day {
+      background: #fff6e8;
+      border-radius: 50px;
+      padding: 12px 6px;
+      text-align: center;
+      font-weight: 500;
+      transition: 0.1s;
+      cursor: pointer;
+    }
+    .cal-day.today {
+      background: linear-gradient(145deg, #ff7b2c, #ffb347);
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .cal-day:hover:not(.empty) {
+      background: #9b4dff20;
+      transform: scale(0.95);
+    }
+    .empty {
+      background: transparent;
+      cursor: default;
+    }
+
+    footer {
+      background: #171326;
+      color: #ddd8e8;
+      padding: 40px 0 24px;
+      margin-top: 64px;
+      border-radius: 40px 40px 0 0;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    .social-links a {
+      color: #ffc37b;
+      font-size: 1.6rem;
+      margin: 0 12px;
+      transition: 0.2s;
+    }
+    .social-links a:hover {
+      color: #ff7b2c;
+      transform: translateY(-4px);
+      display: inline-block;
+    }
+    .copyright {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    /* animations */
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* responsive */
+    @media (max-width: 780px) {
+      .navbar {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .nav-links {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+      .calendar-days .cal-day {
+        padding: 8px 4px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="navbar">
+      <div class="logo"><i class="fas fa-glass-cheers"></i> Celebrate365</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#today">Today’s Celebrations</a></li>
+        <li><a href="#calendar">Calendar</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container" id="home">
+    <!-- hero -->
+    <div class="hero">
+      <h1>🎉 Every Day is a Celebration 🎊</h1>
+      <p>Discover holidays, fun observances, and special days happening around the world — 365 days of joy!</p>
+    </div>
+
+    <!-- Dynamic Today's date banner -->
+    <div style="text-align: center;">
+      <div class="date-banner">
+        <i class="fas fa-calendar-alt"></i>
+        <span class="today-date" id="fullDateDisplay">Loading...</span>
+        <i class="fas fa-globe-americas"></i>
+      </div>
+    </div>
+
+    <!-- Today's Celebrations section -->
+    <section id="today">
+      <div class="section-title">
+        <i class="fas fa-sun" style="color:#ff7b2c;"></i> 
+        <span>✨ Today’s Special Days ✨</span>
+      </div>
+      <div id="todayCelebrationsContainer" class="celebrations-grid">
+        <!-- dynamic cards injected -->
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <button id="randomCelebBtn" class="btn-random"><i class="fas fa-dice-d6"></i> Random Celebration Day</button>
+      </div>
+    </section>
+
+    <!-- Calendar Section (basic, interactive) -->
+    <section id="calendar">
+      <div class="section-title">
+        <i class="fas fa-calendar-week" style="color:#9b4dff;"></i>
+        <span>📅 Calendar Explorer</span>
+      </div>
+      <div class="calendar-wrapper" id="calendarWidget">
+        <!-- dynamic calendar injected by JS -->
+      </div>
+      <p style="margin-top: 16px; font-style: italic; text-align: center;"><i class="fas fa-info-circle"></i> Click any date to preview celebrations!</p>
+    </section>
+
+    <!-- About section -->
+    <section id="about">
+      <div class="section-title">
+        <i class="fas fa-heart" style="color:#ff4d6d;"></i>
+        <span>About Celebrate365</span>
+      </div>
+      <div style="background: white; border-radius: 36px; padding: 32px; box-shadow: var(--shadow);">
+        <p style="font-size: 1.1rem; margin-bottom: 16px;">🌎 Celebrate365 brings you the world's most joyful, quirky, and meaningful celebrations every single day. From World Pizza Day to International Friendship Day, we curate the happiest moments.</p>
+        <p>🎈 Our mission: brighten your day with fascinating holidays, random fun facts, and reasons to celebrate — no matter where you are. Click on any date in our calendar or hit the Random button to explore festivities year-round!</p>
+        <div style="margin-top: 20px; display: flex; gap: 16px; flex-wrap: wrap;">
+          <span><i class="fas fa-check-circle" style="color:#3b82f6;"></i> Daily updates</span>
+          <span><i class="fas fa-champagne-glasses" style="color:#ff7b2c;"></i> 1000+ events</span>
+          <span><i class="fas fa-smile-wink" style="color:#9b4dff;"></i> Global traditions</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="logo" style="background: none; color: #ffb86b; font-size: 1.5rem;">🎉 Celebrate365</div>
+      <div class="social-links">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+      </div>
+      <div class="copyright">
+        &copy; 2025 Celebrate365 | Every day shines brighter
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // --------------------------------------------------------------
+  // CELEBRATIONS DATABASE (sample data with dates & descriptions)
+  // Each entry: month (1-12), day, name, description, icon emoji
+  // --------------------------------------------------------------
+  const celebrationsDB = [
+    { month: 1, day: 1, name: "🎆 New Year's Day", desc: "Celebrate fresh beginnings worldwide with fireworks and hope.", icon: "🥂" },
+    { month: 1, day: 6, name: "🧦 National Cuddle Up Day", desc: "Stay cozy and share warmth with loved ones.", icon: "🤗" },
+    { month: 2, day: 14, name: "💖 Valentine’s Day", desc: "Love, roses, chocolate hearts around the globe.", icon: "💘" },
+    { month: 3, day: 17, name: "🍀 St. Patrick’s Day", desc: "Irish pride, green parades, and lucky clovers.", icon: "☘️" },
+    { month: 4, day: 22, name: "🌍 Earth Day", desc: "Protecting our planet, sustainability actions.", icon: "🌎" },
+    { month: 5, day: 5, name: "🎉 Cinco de Mayo", desc: "Celebrate Mexican heritage and culture!", icon: "🌮" },
+    { month: 6, day: 21, name: "☀️ Summer Solstice", desc: "Longest day, midsummer magic.", icon: "🏖️" },
+    { month: 7, day: 4, name: "🇺🇸 Independence Day", desc: "Fireworks, barbecues, and patriotic cheer.", icon: "🎇" },
+    { month: 8, day: 12, name: "🐘 World Elephant Day", desc: "Raise awareness for elephant conservation.", icon: "🐘" },
+    { month: 9, day: 19, name: "🏴‍☠️ Talk Like a Pirate Day", desc: "Ahoy! Speak pirate lingo for fun.", icon: "🏴‍☠️" },
+    { month: 10, day: 31, name: "🎃 Halloween", desc: "Spooky costumes, trick-or-treat fun.", icon: "🦇" },
+    { month: 11, day: 11, name: "🕊️ Remembrance Day", desc: "Honor veterans and fallen soldiers.", icon: "🌺" },
+    { month: 12, day: 25, name: "🎄 Christmas Day", desc: "Joy, gifts, festive spirit worldwide.", icon: "🎁" },
+    { month: 12, day: 31, name: "🎆 New Year's Eve", desc: "Countdown to midnight and fresh hopes.", icon: "🕛" },
+    // additional everyday fun days (spread around)
+    { month: 1, day: 19, name: "🍿 Popcorn Day", desc: "Enjoy buttery popcorn movies!", icon: "🍿" },
+    { month: 3, day: 14, name: "🥧 Pi Day", desc: "Celebrate math and delicious pie!", icon: "π" },
+    { month: 4, day: 1, name: "😂 April Fools' Day", desc: "Pranks, jokes, and silly mischief.", icon: "🤡" },
+    { month: 5, day: 12, name: "🧘 Global Wellness Day", desc: "Relax, recharge, find balance.", icon: "🧘" },
+    { month: 6, day: 18, name: "🎣 Go Fishing Day", desc: "Cast a line, enjoy nature.", icon: "🐟" },
+    { month: 7, day: 29, name: "🐯 International Tiger Day", desc: "Protect majestic tigers.", icon: "🐅" },
+    { month: 8, day: 26, name: "🐕‍🦺 National Dog Day", desc: "Celebrate furry best friends.", icon: "🐕" },
+    { month: 9, day: 13, name: "🍫 International Chocolate Day", desc: "Indulge in sweet cacao bliss!", icon: "🍫" },
+    { month: 10, day: 16, name: "🍞 World Bread Day", desc: "Fresh bread traditions.", icon: "🥖" },
+    { month: 11, day: 19, name: "🚻 World Toilet Day", desc: "Sanitation awareness fun.", icon: "🚽" },
+  ];
+
+  // Helper: get today's date object
+  function getToday() {
+    const now = new Date();
+    return { month: now.getMonth() + 1, day: now.getDate(), year: now.getFullYear() };
+  }
+
+  // Get celebrations for a specific month/day
+  function getCelebrationsByDate(month, day) {
+    return celebrationsDB.filter(celeb => celeb.month === month && celeb.day === day);
+  }
+
+  // Display today's events with animations
+  function renderTodayCelebrations() {
+    const today = getToday();
+    const celebrations = getCelebrationsByDate(today.month, today.day);
+    const container = document.getElementById("todayCelebrationsContainer");
+    // format date display
+    const dateObj = new Date(today.year, today.month-1, today.day);
+    const formatted = dateObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById("fullDateDisplay").innerHTML = `<i class="fas fa-star-of-life"></i> ${formatted} <i class="fas fa-gift"></i>`;
+    
+    if (celebrations.length === 0) {
+      container.innerHTML = `<div class="celeb-card" style="grid-column:1/-1; text-align:center;">
+        <div class="celeb-icon">🎈✨</div>
+        <div class="celeb-name">Something Special Brewing</div>
+        <div class="celeb-desc">No major holiday listed? Make your own celebration today! Dance, smile, or treat yourself. 🥳</div>
+      </div>`;
+      return;
+    }
+    container.innerHTML = celebrations.map(celeb => `
+      <div class="celeb-card">
+        <div class="celeb-icon">${celeb.icon || '🎉'}</div>
+        <div class="celeb-name">${celeb.name}</div>
+        <div class="celeb-desc">${celeb.desc}</div>
+      </div>
+    `).join('');
+  }
+
+  // random day: pick random month 1-12, random day (1-28/31 depends but we will just pick from valid range safely + filter celebrations)
+  function randomCelebration() {
+    const randomMonth = Math.floor(Math.random() * 12) + 1;
+    let maxDays = 31;
+    if (randomMonth === 2) maxDays = 28;
+    else if ([4,6,9,11].includes(randomMonth)) maxDays = 30;
+    const randomDay = Math.floor(Math.random() * maxDays) + 1;
+    const randomCelebs = getCelebrationsByDate(randomMonth, randomDay);
+    const container = document.getElementById("todayCelebrationsContainer");
+    const monthName = new Date(2000, randomMonth-1, randomDay).toLocaleString('default', { month: 'long' });
+    if (randomCelebs.length === 0) {
+      container.innerHTML = `<div class="celeb-card" style="grid-column:1/-1; text-align:center;">
+        <div class="celeb-icon">🎲🌟</div>
+        <div class="celeb-name">Random Day: ${monthName} ${randomDay}</div>
+        <div class="celeb-desc">No official celebration? That means it's YOUR day! Create joy, share a laugh, or start a new tradition.</div>
+      </div>`;
+    } else {
+      container.innerHTML = `<div style="grid-column:1/-1;"><p style="font-weight:bold; margin-bottom:12px;">🎲 Random pick: ${monthName} ${randomDay}</p></div>` + 
+        randomCelebs.map(celeb => `
+          <div class="celeb-card">
+            <div class="celeb-icon">${celeb.icon || '🎊'}</div>
+            <div class="celeb-name">${celeb.name}</div>
+            <div class="celeb-desc">${celeb.desc}</div>
+          </div>
+        `).join('');
+    }
+    // update date banner to show random date info
+    document.getElementById("fullDateDisplay").innerHTML = `<i class="fas fa-magic"></i> Random Celebration: ${monthName} ${randomDay} <i class="fas fa-dice"></i>`;
+  }
+
+  // ---------- CALENDAR MODULE (basic interactive) ----------
+  function buildCalendar(year, month) {
+    const firstDay = new Date(year, month, 1).getDay(); // 0 sun
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const todayObj = getToday();
+    const todayYear = todayObj.year;
+    const todayMonth = todayObj.month - 1;
+    const todayDateNum = todayObj.day;
+
+    let calendarDaysHtml = '';
+    for (let i = 0; i < firstDay; i++) {
+      calendarDaysHtml += `<div class="cal-day empty"></div>`;
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const isToday = (year === todayYear && month === todayMonth && d === todayDateNum);
+      const currentMonthNum = month + 1;
+      calendarDaysHtml += `<div class="cal-day ${isToday ? 'today' : ''}" data-day="${d}" data-month="${currentMonthNum}" data-year="${year}">${d}</div>`;
+    }
+    return calendarDaysHtml;
+  }
+
+  let currentCalendarYear = new Date().getFullYear();
+  let currentCalendarMonth = new Date().getMonth(); // 0-11
+
+  function renderCalendarWidget() {
+    const wrapper = document.getElementById("calendarWidget");
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const calendarHtml = `
+      <div class="calendar-header">
+        <button id="prevMonthBtn" style="background:#f0e6ff; border:none; border-radius: 40px; padding:8px 18px; cursor:pointer; font-weight:bold;">◀ Prev</button>
+        <div class="month-year">${monthNames[currentCalendarMonth]} ${currentCalendarYear}</div>
+        <button id="nextMonthBtn" style="background:#f0e6ff; border:none; border-radius: 40px; padding:8px 18px; cursor:pointer; font-weight:bold;">Next ▶</button>
+      </div>
+      <div class="weekdays">
+        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
+      <div class="calendar-days" id="calendarDaysGrid">
+        ${buildCalendar(currentCalendarYear, currentCalendarMonth)}
+      </div>
+    `;
+    wrapper.innerHTML = calendarHtml;
+
+    // attach month buttons
+    document.getElementById("prevMonthBtn").addEventListener("click", () => {
+      let newMonth = currentCalendarMonth - 1;
+      let newYear = currentCalendarYear;
+      if (newMonth < 0) {
+        newMonth = 11;
+        newYear--;
+      }
+      currentCalendarMonth = newMonth;
+      currentCalendarYear = newYear;
+      renderCalendarWidget();
+    });
+    document.getElementById("nextMonthBtn").addEventListener("click", () => {
+      let newMonth = currentCalendarMonth + 1;
+      let newYear = currentCalendarYear;
+      if (newMonth > 11) {
+        newMonth = 0;
+        newYear++;
+      }
+      currentCalendarMonth = newMonth;
+      currentCalendarYear = newYear;
+      renderCalendarWidget();
+    });
+
+    // add click listeners to day cells to show celebrations preview
+    const dayCells = document.querySelectorAll(".cal-day:not(.empty)");
+    dayCells.forEach(cell => {
+      cell.addEventListener("click", (e) => {
+        const day = parseInt(cell.getAttribute("data-day"));
+        const month = parseInt(cell.getAttribute("data-month"));
+        const year = parseInt(cell.getAttribute("data-year"));
+        const clickedCelebs = getCelebrationsByDate(month, day);
+        const monthNameShort = new Date(year, month-1, 1).toLocaleString('default', { month: 'long' });
+        const container = document.getElementById("todayCelebrationsContainer");
+        if (clickedCelebs.length === 0) {
+          container.innerHTML = `<div class="celeb-card" style="grid-column:1/-1; text-align:center;">
+            <div class="celeb-icon">📅✨</div>
+            <div class="celeb-name">${monthNameShort} ${day}, ${year}</div>
+            <div class="celeb-desc">No specific event — celebrate something spontaneous! 🎈</div>
+          </div>`;
+        } else {
+          container.innerHTML = `<div style="grid-column:1/-1;"><p style="font-weight:bold; margin-bottom:12px;">🎯 Celebrations on ${monthNameShort} ${day}, ${year}:</p></div>` +
+            clickedCelebs.map(celeb => `
+              <div class="celeb-card">
+                <div class="celeb-icon">${celeb.icon || '🎉'}</div>
+                <div class="celeb-name">${celeb.name}</div>
+                <div class="celeb-desc">${celeb.desc}</div>
+              </div>
+            `).join('');
+        }
+        // update date banner
+        document.getElementById("fullDateDisplay").innerHTML = `<i class="fas fa-calendar-check"></i> Showing: ${monthNameShort} ${day}, ${year} <i class="fas fa-party-horn"></i>`;
+        // smooth scroll to today's section
+        document.getElementById("today").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
+
+  // attach random button listener & init smooth scroll + initial load
+  document.addEventListener("DOMContentLoaded", () => {
+    renderTodayCelebrations();
+    renderCalendarWidget();
+    const randomBtn = document.getElementById("randomCelebBtn");
+    randomBtn.addEventListener("click", () => {
+      randomCelebration();
+      // also optional: subtle current calendar highlight but main feature works
+    });
+    // smooth scroll for nav links (already in default).
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
